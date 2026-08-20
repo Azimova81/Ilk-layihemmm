@@ -1,17 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="az">
 <head>
-    <title>Mini Test Səhifəsi</title>
+    <meta charset="UTF-8">
+    <title>Əyləncəli Test Saytı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74b9ff, #a29bfe);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #2d3436;
+            text-align: center;
+            font-size: 24px;
+        }
+        .question {
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background: #f1f2f6;
+            padding: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .options label:hover {
+            background: #dfe4ea;
+        }
+        button {
+            background: #e84393;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #d63031;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+            color: #2f3640;
+        }
+    </style>
 </head>
 <body>
-    <h1>Biliklərinizi sınayın!</h1>
-    <p><b>Sual 1:</b> Azərbaycanın paytaxtı haradır?</p>
+
+<div class="container">
+    <h1>Biliklərinizi Sınayın!</h1>
     
-    <form>
-        <input type="radio" name="cavab" value="yanlis"> Gəncə<br>
-        <input type="radio" name="cavab" value="dogru"> Bakı<br>
-        <input type="radio" name="cavab" value="yanlis"> Sumqayıt<br><br>
-        <button type="button" onclick="alert('Düzgündür! 🎉')">Cavabı Yoxla</button>
-    </form>
+    <div class="question">1. Azərbaycanın paytaxtı haradır?</div>
+    <div class="options">
+        <label><input type="radio" name="q1" value="yanlis"> Gəncə</label>
+        <label><input type="radio" name="q1" value="dogru"> Bakı</label>
+        <label><input type="radio" name="q1" value="yanlis"> Sumqayıt</label>
+    </div>
+
+    <div class="question">2. HTML nə deməkdir?</div>
+    <div class="options">
+        <label><input type="radio" name="q2" value="dogru"> Veb səhifə dili</label>
+        <label><input type="radio" name="q2" value="yanlis"> Oyun proqramı</label>
+        <label><input type="radio" name="q2" value="yanlis"> Antivirus</label>
+    </div>
+
+    <button onclick="neticeniGoster()">Nəticəni Gör</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function neticeniGoster() {
+        let dogruSayi = 0;
+        
+        let q1Cavab = document.querySelector('input[name="q1"]:checked');
+        let q2Cavab = document.querySelector('input[name="q2"]:checked');
+
+        if (q1Cavab && q1Cavab.value === "dogru") {
+            dogruSayi++;
+        }
+        if (q2Cavab && q2Cavab.value === "dogru") {
+            dogruSayi++;
+        }
+
+        document.getElementById("result").innerText = "Sənin nəticən: 2 sualdan " + dogruSayi + " düzgün!";
+    }
+</script>
+
 </body>
-</html>
+    </html>
+    
