@@ -2,109 +2,224 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <title>Əyləncəli Test Saytı</title>
+    <title>Xarakter Testi: Sən kimsən?</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #74b9ff, #a29bfe);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
             margin: 0;
             padding: 20px;
             display: flex;
             justify-content: center;
+            min-height: 100vh;
         }
         .container {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            max-width: 500px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            max-width: 600px;
             width: 100%;
+            box-sizing: border-box;
         }
         h1 {
-            color: #2d3436;
+            color: #2c3e50;
             text-align: center;
-            font-size: 24px;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .question {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: bold;
             color: #333;
+            font-size: 18px;
+            border-left: 4px solid #ff7675;
+            padding-left: 15px;
         }
         .options label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             cursor: pointer;
-            background: #f1f2f6;
-            padding: 10px;
-            border-radius: 8px;
-            transition: 0.3s;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
         }
         .options label:hover {
-            background: #dfe4ea;
+            background: #ffeaa7;
+            transform: translateX(5px);
+            border-color: #fdcb6e;
+        }
+        .options input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.2);
         }
         button {
-            background: #e84393;
+            background: #ff7675;
             color: white;
             border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 8px;
+            padding: 18px 25px;
+            font-size: 18px;
+            border-radius: 10px;
             cursor: pointer;
             width: 100%;
-            margin-top: 15px;
+            margin-top: 30px;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
         }
         button:hover {
             background: #d63031;
         }
-        #result {
-            margin-top: 20px;
-            font-size: 18px;
+        #result-area {
+            margin-top: 40px;
             text-align: center;
+            display: none; /* Başlanğıcda gizli */
+            animation: fadeIn 1s;
+        }
+        #result-title {
+            font-size: 40px;
             font-weight: bold;
-            color: #2f3640;
+            color: #e17055;
+            margin-bottom: 15px;
+        }
+        #result-description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Biliklərinizi Sınayın!</h1>
+    <h1>Sən Əslində Kimsən?</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 30px;">Xarakterini müəyyən etmək üçün 5 suala cavab ver!</p>
     
-    <div class="question">1. Azərbaycanın paytaxtı haradır?</div>
-    <div class="options">
-        <label><input type="radio" name="q1" value="yanlis"> Gəncə</label>
-        <label><input type="radio" name="q1" value="dogru"> Bakı</label>
-        <label><input type="radio" name="q1" value="yanlis"> Sumqayıt</label>
+    <div id="quiz-form">
+        <!-- Sual 1 -->
+        <div class="question">1. Təhlükəli və ya gərgin bir vəziyyətdə ilk reaksiyan nə olur?</div>
+        <div class="options">
+            <label><input type="radio" name="q1" value="a"> A) Vəziyyəti ələ alıb liderlik edirəm.</label>
+            <label><input type="radio" name="q1" value="b"> B) Müdrik və sakit qalıb plan qururam.</label>
+            <label><input type="radio" name="q1" value="c"> C) Özümü qoruyub başqalarının nə edəcəyinə baxıram.</label>
+        </div>
+
+        <!-- Sual 2 -->
+        <div class="question">2. Bir qrupda və ya cəmiyyətdə özünü necə hiss edirsən?</div>
+        <div class="options">
+            <label><input type="radio" name="q2" value="a"> A) Mərkəzdə olmağı və diqqəti sevirəm.</label>
+            <label><input type="radio" name="q2" value="b"> B) İnsanları müşahidə edib dərin söhbətlər edirəm.</label>
+            <label><input type="radio" name="q2" value="c"> C) Tək qalmağa üstünlük verirəm, qruplara qoşulmuram.</label>
+        </div>
+
+        <!-- Sual 3 -->
+        <div class="question">3. Hədəflərinə çatmaq üçün necə hərəkət edirsən?</div>
+        <div class="options">
+            <label><input type="radio" name="q3" value="a"> A) Açıq və cəsarətli mübarizə aparıram.</label>
+            <label><input type="radio" name="q3" value="b"> B) Strateji düşünərək ağıllı manevrlər edirəm.</label>
+            <label><input type="radio" name="q3" value="c"> C) İstəyimə çatmaq üçün öz qaydalarımı yaradıram, kimsəni izləmirəm.</label>
+        </div>
+
+        <!-- Sual 4 -->
+        <div class="question">4. Güc və nüfuz sənin üçün nə dərəcədə önəmlidir?</div>
+        <div class="options">
+            <label><input type="radio" name="q4" value="a"> A) Çox önəmlidir, lider olmaq təbiətimdədir.</label>
+            <label><input type="radio" name="q4" value="b"> B) Orta dərəcədədir, ədalət daha önəmlidir.</label>
+            <label><input type="radio" name="q4" value="c"> C) Önəmsizdir, öz həyatımı sərbəst yaşamaq istəyirəm.</label>
+        </div>
+
+        <!-- Sual 5 -->
+        <div class="question">5. İnsanlara münasibətin necədir?</div>
+        <div class="options">
+            <label><input type="radio" name="q5" value="a"> A) Onları qoruyuram və yönləndirirəm.</label>
+            <label><input type="radio" name="q5" value="b"> B) Onlara məsləhət verirəm və dəstək oluram.</label>
+            <label><input type="radio" name="q5" value="c"> C) Azadlıqlarına hörmət edirəm, özlərini idarə etmələrinə şərait yaradıram.</label>
+        </div>
+
+        <button onclick="hesabla()">Nəticəmi Gör</button>
     </div>
 
-    <div class="question">2. HTML nə deməkdir?</div>
-    <div class="options">
-        <label><input type="radio" name="q2" value="dogru"> Veb səhifə dili</label>
-        <label><input type="radio" name="q2" value="yanlis"> Oyun proqramı</label>
-        <label><input type="radio" name="q2" value="yanlis"> Antivirus</label>
+    <!-- Nəticə Göstərilən Yer -->
+    <div id="result-area">
+        <div id="result-title"></div>
+        <div id="result-description"></div>
+        <button onclick="yenidenBasla()" style="background: #2d3436; margin-top: 20px;">Testə Yenidən Başla</button>
     </div>
-
-    <button onclick="neticeniGoster()">Nəticəni Gör</button>
-
-    <div id="result"></div>
 </div>
 
 <script>
-    function neticeniGoster() {
-        let dogruSayi = 0;
+    function hesabla() {
+        // Bütün sualların cavablarını yoxla
+        let cavablar = [];
+        for(let i = 1; i <= 5; i++) {
+            let q = document.querySelector('input[name="q'+i+'"]:checked');
+            if(!q) {
+                alert("Zəhmət olmasa bütün sualları cavablandır!");
+                return;
+            }
+            cavablar.push(q.value);
+        }
+
+        // Hər cavabdan neçə dənə olduğunu say
+        let aSayi = cavablar.filter(v => v === 'a').length;
+        let bSayi = cavablar.filter(v => v === 'v').length;
+        let cSayi = cavablar.filter(v => v === 'c').length;
+
+        let neticeTipi = "";
+        let neticeBasligi = "";
+        let neticeTesviri = "";
+
+        // Ən çox seçilən cavaba görə nəticəni təyin et
+        if (aSayi >= 3) {
+            neticeTipi = "ALFA";
+            neticeBasligi = "Sən ALFAsan!";
+            neticeTesviri = "Təbiəti ilə lider, cəsarətli və qərarlısan. Həyatda idarə edən və qoruyan mövqedəsən. Məqsədlərinə çəkinmədən çatırsan.";
+        } else if (bSayi >= 3) {
+            neticeTipi = "BETA";
+            neticeBasligi = "Sən BETAsan!";
+            neticeTesviri = "Müdrik, sakit və dərin düşüncəlisən. Plan qurmaqda və komandada dəstək olmaqda əvəzsizsən. Ədalətli və diplomatik yanaşman var.";
+        } else if (cSayi >= 3) {
+            neticeTipi = "SİQMA";
+            neticeBasligi = "Sən SİQMA-san!";
+            neticeTesviri = "İntrovertdən çox, öz dünyası olan müstəqil birisən. Qaydalara tabe olmaqdansa, öz qanunlarını yaradırsan. Sirli və iddialısan, tək başına da güclüsən.";
+        } 
+        // Əgər hərəsindən bir az varsa (orta nəticə)
+        else {
+            neticeTipi = "OMEQA";
+            neticeBasligi = "Sən OMEQA-san!";
+            neticeTesviri = "Fərqli və azad ruhsan. Heç bir qəlibə sığmırsan. Yaradıcılıq və özünü ifadə etmək sənin üçün ən önəmli şeydir. Unikal xarakterin var.";
+        }
+
+        // Test suallarını gizlət
+        document.getElementById("quiz-form").style.display = "none";
         
-        let q1Cavab = document.querySelector('input[name="q1"]:checked');
-        let q2Cavab = document.querySelector('input[name="q2"]:checked');
+        // Nəticəni göstər
+        document.getElementById("result-title").innerText = neticeBasligi;
+        document.getElementById("result-description").innerText = neticeTesviri;
+        document.getElementById("result-area").style.display = "block";
+    }
 
-        if (q1Cavab && q1Cavab.value === "dogru") {
-            dogruSayi++;
-        }
-        if (q2Cavab && q2Cavab.value === "dogru") {
-            dogruSayi++;
-        }
+    function yenidenBasla() {
+        // Bütün seçimləri təmizlə
+        let radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(rb => rb.checked = false);
 
-        document.getElementById("result").innerText = "Sənin nəticən: 2 sualdan " + dogruSayi + " düzgün!";
+        // Sualları göstər, nəticəni gizlət
+        document.getElementById("quiz-form").style.display = "block";
+        document.getElementById("result-area").style.display = "none";
     }
 </script>
 
